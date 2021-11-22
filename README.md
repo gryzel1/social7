@@ -1,4 +1,4 @@
-# social-7
+# social7
 
 > N7 social network
 
