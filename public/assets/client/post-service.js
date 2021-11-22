@@ -6,12 +6,12 @@ app.configure(feathers.authentication({ storage: localStorage }));
 
 const postsService = app.service('posts');
 
-app.authenticate({
-    strategy: 'local',
-    id: 'gryzel',
-    password: 'internet'
-}).then((result) => {
-    console.log("Authentication successful!");
-}).catch(e => {
-    console.error('Authentication failed', e);
-});
+const newPostArea = document.getElementById("new-post-area");
+const publishButton = document.getElementById("publish-button");
+
+publishButton.onclick = async function(){
+    const newPost = await postsService.create({
+        text: newPostArea.value
+    });
+    newPostArea.value = "";
+}

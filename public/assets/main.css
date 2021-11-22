@@ -87,16 +87,14 @@ body{
 }
 
 .tag.is-username{
-    border-top-right-radius: 5px !important;
-    border-bottom-right-radius: 5px !important;
     background-color: #00AA5F;
     color: white;
 }
 
 .profile-picture-post{
-    height:80px;
+    height:50px;
     border-radius: 100%;
-    border: solid lightgray 5px;
+    border: solid lightgray 3px;
     vertical-align: middle;
 }
 
@@ -108,7 +106,7 @@ body{
 
 .card-header{
     box-shadow: none;
-    height: 80px;
+    height: 50px;
 }
 
 .card-footer-item{
@@ -166,6 +164,7 @@ body{
     width:100%;
     border: 1px solid lightgray;
     border-radius: 5px;
+    resize: none;
 }
 
 .notif-desc{
