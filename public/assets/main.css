@@ -62,8 +62,10 @@ body{
 
 .profile-picture{
     height:30px;
-    border-radius: 100%;
+    border-radius: 10px;
     vertical-align: middle;
+    margin-top: -3px;
+    margin-right: 3px;
 }
 
 
@@ -93,8 +95,15 @@ body{
 
 .profile-picture-post{
     height:50px;
-    border-radius: 100%;
-    border: solid lightgray 3px;
+    border-radius: 10px;
+    border: solid #00AA5F 3px;
+    vertical-align: middle;
+}
+
+.profile-picture-profile{
+    height:100px;
+    border-radius: 20px;
+    border: solid #00AA5F 3px;
     vertical-align: middle;
 }
 
