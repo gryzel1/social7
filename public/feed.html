@@ -44,7 +44,7 @@
           </div>
       
           <div class="navbar-end">
-            <a href="notifications.html" class="navbar-item nav-button">
+            <a href="notifications" class="navbar-item nav-button">
               <span title="Badge top right" class="badge is-bottom social7-badge">8</span>
               <span class="nav-button-span">
                   <i class="fas fa-bell"></i>
@@ -62,10 +62,15 @@
                     <i class="fas fa-calendar-alt"></i>
                 </span>
             </a>
-            <a href="profile.html" class="navbar-item nav-button">
+            <a class="navbar-item nav-button" id="disconnect-button">
+              <span class="nav-button-span">
+                <i class="fas fa-power-off"></i>
+              </span>
+            </a>
+            <a href="profile" class="navbar-item nav-button">
                 <span class="nav-button-span">
-                    <img class="profile-picture" src="assets/images/mathis.jpg" alt="Profile picture">
-                    Mathis Grisel
+                    <img class="profile-picture" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+                    <span id="nav-name-span"></span>
                 </span>
             </a>
           </div>
@@ -95,7 +100,7 @@
         <div class="card post">
           <header class="card-header">
             <p class="card-header-title tags has-addons username">
-              <img class="profile-picture-post" src="assets/images/mael.jpg" alt="Profile picture">
+              <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
               &nbsp;&nbsp;
               <span class="tag is-name">Maël Queguiner</span>
               <span class="tag is-username">@zeyesm</span>
@@ -125,7 +130,7 @@
         <div class="card post">
             <header class="card-header">
               <p class="card-header-title tags has-addons username">
-                <img class="profile-picture-post" src="assets/images/mathis.jpg" alt="Profile picture">
+                <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
                 &nbsp;&nbsp;
                 <span class="tag is-name">Mathis Grisel</span>
                 <span class="tag is-username">@gryzel64</span>
@@ -158,3 +163,5 @@
 </html>
 
 <script src="assets/client/post-service.js"></script>
+<script src="assets/client/navbar-update.js"></script>
+<script src="assets/client/disconnect.js"></script>

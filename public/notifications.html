@@ -11,6 +11,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <link rel="stylesheet" href="assets/bulma-badge/dist/bulma-badge.css">
+    <script src="//unpkg.com/@feathersjs/client@^4.5.0/dist/feathers.js"></script>
+    <script src="//unpkg.com/socket.io-client@^2.3.0/dist/socket.io.js"></script>
     <script src="assets/client/verifyAuth.js"></script>
     
     <title>Social7 Feed</title>
@@ -18,7 +20,7 @@
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item" href="feed.html">
+          <a class="navbar-item" href="feed">
             <img style="max-height: 2.5rem;" src="assets/images/social7.png" alt="">
           </a>
       
@@ -60,10 +62,15 @@
                     <i class="fas fa-calendar-alt"></i>
                 </span>
             </a>
-            <a href="profile.html" class="navbar-item nav-button">
+            <a class="navbar-item nav-button" id="disconnect-button">
+              <span class="nav-button-span">
+                <i class="fas fa-power-off"></i>
+              </span>
+            </a>
+            <a href="profile" class="navbar-item nav-button">
                 <span class="nav-button-span">
-                    <img class="profile-picture" src="assets/images/mathis.jpg" alt="Profile picture">
-                    Mathis Grisel
+                    <img class="profile-picture" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+                    <span id="nav-name-span"></span>
                 </span>
             </a>
           </div>
@@ -80,7 +87,7 @@
               <div class="card post">
                 <header class="card-header">
                   <p class="card-header-title tags has-addons username">
-                    <img class="profile-picture-post" src="assets/images/mathis.jpg" alt="Profile picture">
+                    <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
                     &nbsp;&nbsp;
                     <span class="tag is-name">Mathis Grisel</span>
                     <span class="tag is-username">@gryzel64</span>
@@ -117,7 +124,7 @@
               <div class="card post">
                 <header class="card-header">
                   <p class="card-header-title tags has-addons username">
-                    <img class="profile-picture-post" src="assets/images/mathis.jpg" alt="Profile picture">
+                    <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
                     &nbsp;&nbsp;
                     <span class="tag is-name">Mathis Grisel</span>
                     <span class="tag is-username">@gryzel64</span>
@@ -154,7 +161,7 @@
               <div class="card post">
                 <header class="card-header">
                   <p class="card-header-title tags has-addons username">
-                    <img class="profile-picture-post" src="assets/images/mathis.jpg" alt="Profile picture">
+                    <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
                     &nbsp;&nbsp;
                     <span class="tag is-name">Mathis Grisel</span>
                     <span class="tag is-username">@gryzel64</span>
@@ -188,3 +195,6 @@
 
 </body>
 </html>
+
+<script src="assets/client/navbar-update.js"></script>
+<script src="assets/client/disconnect.js"></script>

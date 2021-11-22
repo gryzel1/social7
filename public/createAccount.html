@@ -19,7 +19,7 @@
     <script src="//unpkg.com/socket.io-client@^2.3.0/dist/socket.io.js"></script>
     <script src="assets/particles/particles.js"></script>
     
-    <title>Social7 Login</title>
+    <title>Social7 New Account</title>
 
 
 </head>
@@ -34,9 +34,27 @@
                         <form class="box" onsubmit="return false;">
                         <img class="login-icon" src="assets/images/social7.png" alt="Social7">
                         <div class="field">
-                            <label for="" class="label">Identifiant</label>
+                            <label for="" class="label">Nom d'utilisateur</label>
                             <div class="control has-icons-left">
                                 <input id="username" placeholder="username" class="input">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-id-card"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="" class="label">Nom complet</label>
+                            <div class="control has-icons-left">
+                                <input id="name" placeholder="name" class="input">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-id-card"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="" class="label">Email</label>
+                            <div class="control has-icons-left">
+                                <input id="email" placeholder="email" class="input">
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-id-card"></i>
                                 </span>
@@ -53,11 +71,8 @@
                         </div>
                         <div class="field">
                             <button id="submit" type="submit" class="button login-button">
-                            Se connecter
+                            Créer un nouveau compte
                             </button>
-                            <a href="createAccount" class="button login-button create-account-button">
-                                Créer un compte
-                            </a>
                         </div>
                         </form>
                     </div>
@@ -65,7 +80,7 @@
                 <div class="columns is-centered" id="error-div">
                     <div class="notification is-danger is-light column is-5-tablet is-4-desktop is-3-widescreen">
                         <button class="delete" id="error-close"></button>
-                        Échec de l'authentification. Veuillez réessayer avec d'autres identifiants ou contacter un administrateur.
+                        Échec de la création, un champs semble mal rempli.
                     </div>
                 </div>
                 </div>
@@ -76,4 +91,4 @@
     </body>
 </html>
 
-<script src="assets/client/login.js"></script>
+<script src="assets/client/account-creator.js"></script>

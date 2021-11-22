@@ -11,6 +11,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <link rel="stylesheet" href="assets/bulma-badge/dist/bulma-badge.css">
+    <script src="//unpkg.com/@feathersjs/client@^4.5.0/dist/feathers.js"></script>
+    <script src="//unpkg.com/socket.io-client@^2.3.0/dist/socket.io.js"></script>
     <script src="assets/client/verifyAuth.js"></script>
     
     <title>Social7 Profile</title>
@@ -18,7 +20,7 @@
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item" href="feed.html">
+          <a class="navbar-item" href="feed">
             <img style="max-height: 2.5rem;" src="assets/images/social7.png" alt="">
           </a>
       
@@ -42,7 +44,7 @@
           </div>
       
           <div class="navbar-end">
-            <a href="notifications.html" class="navbar-item nav-button">
+            <a href="notifications" class="navbar-item nav-button">
               <span title="Badge top right" class="badge is-bottom social7-badge">8</span>
               <span class="nav-button-span">
                   <i class="fas fa-bell"></i>
@@ -60,10 +62,15 @@
                     <i class="fas fa-calendar-alt"></i>
                 </span>
             </a>
+            <a class="navbar-item nav-button" id="disconnect-button">
+              <span class="nav-button-span">
+                <i class="fas fa-power-off"></i>
+              </span>
+            </a>
             <a href="" class="navbar-item nav-button">
                 <span class="nav-button-span">
-                    <img class="profile-picture" src="assets/images/mathis.jpg" alt="Profile picture">
-                    Mathis Grisel
+                    <img class="profile-picture" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+                    <span id="nav-name-span"></span>
                 </span>
             </a>
           </div>
@@ -73,18 +80,16 @@
       <div class="container feed-container">
 
         <div class="notification profile-desc">
-          <img class="profile-picture-post" src="assets/images/mathis.jpg" alt="Profile picture">
+          <img class="profile-picture profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
           &nbsp;&nbsp;
-          <span class="tag is-name">Mathis Grisel</span>
-          <span class="tag is-username">@gryzel64</span>
+          <span class="tag is-name is-large" id="profile-name-span"></span>
+          <span class="tag is-username is-large" id="profile-username-span"></span>
           <a href="" class="profile-icon"><i class="fas fa-cog"></i></a>
-          <a href="" class="profile-icon"><i class="fas fa-power-off"></i></a>
           <br><br>
-          <p>Apprenti ingénieur, Français 🇲🇫</p>
+          <p><span id="profile-description-span"></span></p>
           <br>
           <p>
-            <i class="fas fa-map-marker-alt"></i> Biarritz <br>
-            <i class="fas fa-birthday-cake"></i> A rejoint le 20/11/2021
+            <i class="fas fa-birthday-cake"></i> A rejoint le <span id="profile-joined-at"></span>
           </p>
           <br>
 
@@ -123,7 +128,7 @@
         <div class="card post">
             <header class="card-header">
               <p class="card-header-title tags has-addons username">
-                <img class="profile-picture-post" src="assets/images/mathis.jpg" alt="Profile picture">
+                <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
                 &nbsp;&nbsp;
                 <span class="tag is-name">Mathis Grisel</span>
                 <span class="tag is-username">@gryzel64</span>
@@ -154,5 +159,6 @@
 
 </body>
 </html>
-
-<script src="assets/client/verifyAuth.js"></script>
+<script src="assets/client/navbar-update.js"></script>
+<script src="assets/client/profile-update.js"></script>
+<script src="assets/client/disconnect.js"></script>
