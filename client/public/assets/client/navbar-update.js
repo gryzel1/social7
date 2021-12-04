@@ -14,7 +14,7 @@ const replaceNav = async () => {
 
     navSpan.textContent = name;
 
-    Array.from(profilePicture).forEach((pic) => {
+    Array.from(profilePicture).locaforEach((pic) => {
         if(ImageExist("assets/profile-pictures/" + id + ".jpg")){
             pic.src = "assets/profile-pictures/" + id + ".jpg";
         }
