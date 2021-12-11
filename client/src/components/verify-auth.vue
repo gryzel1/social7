@@ -6,7 +6,6 @@ export default{
         const app = feathers();
         app.configure(feathers.socketio(socket));
         app.configure(feathers.authentication({ storage: localStorage }));
-
         try{
             return await app.reAuthenticate();
         } catch(error){
