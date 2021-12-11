@@ -32,9 +32,9 @@
                             <button id="submit" type="submit" class="button login-button" v-on:click="login">
                             Se connecter
                             </button>
-                            <a href="createAccount" class="button login-button create-account-button">
+                            <router-link class="button login-button create-account-button" to="newAccount">
                                 Créer un compte
-                            </a>
+                            </router-link>
                         </div>
                         </form>
                     </div>
@@ -55,9 +55,6 @@
 <script>
 export default {
   name: 'Login',
-  components: {
-    
-  },
   methods: {
         login: async function(){
             const io = require('socket.io-client');
@@ -71,7 +68,6 @@ export default {
 
             const usernameInput = document.getElementById("username");
             const passwordInput = document.getElementById("password");
-            const submitButton = document.getElementById("submit");
 
             const errorDiv = document.getElementById("error-div");
 

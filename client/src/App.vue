@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar v-if="!['Login'].includes($route.name)" />
+    <navbar v-if="!['Login','New Account'].includes($route.name)" />
   </div>
   <router-view />
 </template>

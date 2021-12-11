@@ -15,9 +15,9 @@
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
             <a class="navbar-item">
-                <input class="input nav-research" type="text" placeholder="Rechercher un utilisateur">
+                <input class="input nav-research" type="text" placeholder="Rechercher un utilisateur" v-model="research" v-on:keyup.enter="search">
             </a>
-            <a href="" class="navbar-item nav-button">
+            <a class="navbar-item nav-button" v-on:click="search">
                 <span class="nav-button-span">
                     <i class="fas fa-search"></i>
                 </span>
@@ -31,7 +31,7 @@
                   <i class="fas fa-bell"></i>
               </span>
             </router-link>
-            <a href="" class="navbar-item nav-button">
+            <!-- <a href="" class="navbar-item nav-button">
               <span title="Badge top right" class="badge is-bottom social7-badge">3</span>
                 <span class="nav-button-span">
                   <i class="fas fa-envelope"></i>
@@ -42,7 +42,7 @@
                 <span class="nav-button-span">
                     <i class="fas fa-calendar-alt"></i>
                 </span>
-            </router-link>
+            </router-link> -->
             <a class="navbar-item nav-button" id="disconnect-button" v-on:click="disconnect">
               <span class="nav-button-span">
                 <i class="fas fa-power-off"></i>
@@ -64,7 +64,8 @@ export default {
   name: 'navbar',
   data() {
     return {
-      navSpan: ''
+      navSpan: '',
+      research: ''
     }
   },
   async mounted(){
@@ -100,6 +101,9 @@ export default {
 
       await app.logout();
       window.open("login","_self");
+    },
+    search: function(){
+      window.open("research?user="+this.research,"_self");
     }
   }
 }

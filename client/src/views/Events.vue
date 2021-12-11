@@ -3,7 +3,7 @@
     <verifyAuth />
     <div class="container feed-container">
     
-    <title>Social7 Events</title>
+    <title>Social7 Évènements</title>
 
     <calendar />
 

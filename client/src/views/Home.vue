@@ -4,7 +4,7 @@
     
     <div class="container feed-container">
     
-      <title>Social7 Home</title>
+      <title>Social7 Accueil</title>
 
       <new-post />
 

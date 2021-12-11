@@ -2,7 +2,7 @@
   <div>
     <verify-auth />
     <div class="container feed-container">
-        <title>Social7 Profile</title>
+        <title>Social7 Profil</title>
         <div class="notification profile-desc">
           <img class="profile-picture profile-picture-profile" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
           &nbsp;&nbsp;

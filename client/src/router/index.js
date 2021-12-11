@@ -2,9 +2,11 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
+import NewAccount from "@/views/NewAccount.vue";
 import Profile from "@/views/Profile.vue";
 import Notifications from "@/views/Notifications.vue";
 import Events from "@/views/Events.vue";
+import Research from "@/views/Research.vue";
 
 const routes = [
     {
@@ -16,6 +18,11 @@ const routes = [
         name: 'Login',
         path: '/login',
         component: Login,
+    },
+    {
+        name: 'New Account',
+        path: '/newAccount',
+        component: NewAccount,
     },
     {
         name: 'Profile',
@@ -31,6 +38,11 @@ const routes = [
         name: 'Events',
         path: '/events',
         component: Events,
+    },
+    {
+        name: 'Research',
+        path: '/research',
+        component: Research,
     }
 ];
 
