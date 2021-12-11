@@ -19,10 +19,10 @@
 
           <div class="columns subscribers">
             <div class="column">
-              4M Abonnés
+              X Abonnés
             </div>
             <div class="column">
-              251 Abonnements
+              X Abonnements
             </div>
           </div>
 
@@ -31,12 +31,6 @@
           <div class="columns">
             <div class="column active-category">
               1 Post
-            </div>
-            <div class="column category">
-              0 Commentaire
-            </div>
-            <div class="column category">
-              1 Repost
             </div>
             <div class="column category">
               1 J'aime
@@ -105,19 +99,37 @@ export default {
     app.configure(feathers.socketio(socket));
     app.configure(feathers.authentication({ storage: localStorage }));
 
-    const { user } = await app.reAuthenticate(); 
+    const { user } = await app.reAuthenticate();
+
     const name = user.name;
     const username = user.username;
     const description = user.description;
     const joinedAt = user.createdAt;
 
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    const profileUserName = urlParams.get('user');
+    
+    const usersService = app.service('users');
+    var query = await usersService.find({
+        query: {
+          $select: [ 'id', 'username', 'name', 'description', 'createdAt' ],
+          username:{$like: urlParams.get('user')}
+        }
+    });
+
+    const profileName = query.data[0].name;
+    const profileDesc = query.data[0].description;
+    const profileJoinedAt = query.data[0].createdAt.substring(8,10) + "/" + query.data[0].createdAt.substring(5,7) + "/" + query.data[0].createdAt.substring(0,4);
+
     joinedAt.slice(0,10);
     const joinedAtString = joinedAt.substring(8,10) + "/" + joinedAt.substring(5,7) + "/" + joinedAt.substring(0,4)
 
-    this.profileNameSpan = name;
-    this.profileUsernameSpan = "@"+username;
-    this.descriptionSpan = description;
-    this.joinedAtSpan = joinedAtString;
+    this.profileNameSpan = profileName;
+    this.profileUsernameSpan = "@"+profileUserName;
+    this.descriptionSpan = profileDesc;
+    this.joinedAtSpan = profileJoinedAt;
   }
 }
 </script>

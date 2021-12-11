@@ -48,7 +48,7 @@
                 <i class="fas fa-power-off"></i>
               </span>
             </a>
-            <router-link class="navbar-item nav-button" to="/profile">
+            <router-link class="navbar-item nav-button" :to="'/profile?user=' + this.username">
                 <span class="nav-button-span">
                     <img class="profile-picture" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
                     <span id="nav-name-span">{{navSpan}}</span>
@@ -65,7 +65,8 @@ export default {
   data() {
     return {
       navSpan: '',
-      research: ''
+      research: '',
+      username: '',
     }
   },
   async mounted(){
@@ -79,6 +80,8 @@ export default {
       const { user } = await app.reAuthenticate(); 
       const name = user.name;
       const id = user.id;
+
+      this.username = user.username;
 
       this.navSpan = name;
 
