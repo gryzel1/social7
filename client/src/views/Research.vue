@@ -8,7 +8,8 @@
                 <div class="card post">
                     <header class="card-header">
                         <p class="card-header-title tags has-addons username">
-                        <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+                        <img v-if="!imageExists(answer.id)" class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+                        <img v-if="imageExists(answer.id)" class="profile-picture-post" :src="'assets/profile-pictures/' + answer.id + '.jpg'" alt="Profile picture">
                         &nbsp;&nbsp;
                         <span class="tag is-name">{{ answer.name }}</span>
                         <span class="tag is-username">{{ answer.username }}</span>
@@ -34,7 +35,7 @@ export default {
     },
     data(){
         return {
-            queryAnswer: []
+            queryAnswer: [],
         }
     },
     async mounted() {
@@ -61,5 +62,14 @@ export default {
 
         this.queryAnswer = query.data;
     },
+    methods:{
+        imageExists(id){
+            var img = new Image();
+            img.src = "../assets/profile-pictures/" + id + ".jpg";
+            if(img.height != 0){
+                return true;
+            }
+        }
+    }
 }
 </script>

@@ -10,8 +10,10 @@
             <br><br>
             <textarea v-model="descriptionSpan" class="new-post-area edit-desc" id="new-post-area" name="new-post" cols="s" rows="3"></textarea>
             <br><br>
+            <h1>Photo de profil</h1>
+            <input type="file" id="avatar" name="avatar" accept="image/jpg">
+            <br><br>
             <button style="border:none;" class="follow-button" v-on:click="save">Enregistrer</button>
-            
             </div>
         </div>
     </div>

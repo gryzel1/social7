@@ -157,6 +157,7 @@ export default {
                 followedId: this.profileID
       });
 
+      this.followersCount += 1;
       this.isFollowed = true;
     },
     async unFollow(){
@@ -177,6 +178,7 @@ export default {
 
       await followService.remove(query.data[0].id);
 
+      this.followersCount -= 1;
       this.isFollowed = false;
     }
   }
