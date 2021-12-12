@@ -6,10 +6,7 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const posts = sequelizeClient.define('posts', {
-    senderID: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
+
     text: {
       type: DataTypes.STRING,
       allowNull: false
@@ -26,6 +23,9 @@ module.exports = function (app) {
   posts.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    posts.belongsTo(models.users, {
+      foreignKey:'userId', targetKey: 'id', as:'User'
+    });
   };
 
   return posts;

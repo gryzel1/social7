@@ -43,6 +43,12 @@ module.exports = function (app) {
   users.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    users.hasMany(models.posts, {
+      foreignKey: 'id'
+    });
+
+    users.belongsToMany(users, {as: 'User', foreignKey: 'UserId', through: 'Follow'});
+    users.belongsToMany(users, {as: 'Followed', foreignKey: 'FollowedId', through: 'Follow'});
   };
 
   return users;

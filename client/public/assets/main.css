@@ -205,8 +205,11 @@ body{
 }
 
 #publish-button{
-    background-color:#00AA5F;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+
+#publish-button:hover{
+    background-color:#00AA5F;
     color: white;
 }

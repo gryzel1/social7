@@ -38,7 +38,7 @@ export default{
 
             const newPost = await postsService.create({
                 text: this.text,
-                senderID: id
+                userId: id
             });
             this.text = "";
         }
