@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="title section-title">Fil d'Actualité</h1>
+        <h1 class="title section-title">Derniers posts</h1>
 
         <!-- début post -->
         <div class="card post" v-for="post in posts">
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-    name: 'feed',
+    name: 'profile-post-feed',
     data(){
         return {
             posts: []
@@ -45,14 +45,26 @@ export default {
         await app.reAuthenticate(); 
 
         const postsService = app.service('posts');
-        const usersService = app.service('users');
 
-        var query = await postsService.find({
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        const profileUserName = urlParams.get('user');
+
+        const usersService = app.service('users');
+        var query = await usersService.find({
             query: {
+                username: profileUserName
             }
         });
 
-        this.posts = query.data;
+        var queryPosts = await postsService.find({
+            query: {
+                userId: query.data[0].id
+            }
+        });
+
+        this.posts = queryPosts.data;
     },
     methods: {
         imageExists(id){

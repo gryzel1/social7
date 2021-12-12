@@ -41,38 +41,7 @@
         </div>
        
         
-        <h1 class="title section-title">Derniers Posts</h1>
-
-        <!-- début post -->
-        <div class="card post">
-            <header class="card-header">
-              <p class="card-header-title tags has-addons username">
-                <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
-                &nbsp;&nbsp;
-                <span class="tag is-name">Mathis Grisel</span>
-                <span class="tag is-username">@gryzel64</span>
-              </p>
-              <button class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </button>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                Y'en a marre des noix, des arbres et des bagnoles...
-                <a href="#">@zeyesm</a>. <a href="#">#firstpost</a> <a href="#">#helloworld</a>
-                <br>
-                <time datetime="2021-11-20">22:42 PM - 20 Nov 2021</time>
-              </div>
-            </div>
-            <footer class="card-footer">
-              <a href="#" class="card-footer-item">13 &nbsp;<i class="fas fa-comment"></i></a>
-              <a href="#" class="card-footer-item">3,4M &nbsp;<i class="fas fa-retweet"></i></a>
-              <a href="#" class="card-footer-item">17M &nbsp;<i class="fas fa-heart"></i></a>
-            </footer>
-        </div>
-        <!-- fin post -->
+        <profile-post-feed />
 
     </div>
   </div>
@@ -81,11 +50,14 @@
 <script>
 import navbar from "@/components/navbar.vue";
 import verifyAuth from '../components/verify-auth.vue';
+import ProfilePostFeed from "../components/profile-post-feed.vue";
 export default { 
   name: 'Profile',
   components: {
-    navbar, verifyAuth
-  },
+    navbar,
+    verifyAuth,
+    ProfilePostFeed
+},
   data() {
     return {
       profileNameSpan: '',
@@ -139,9 +111,8 @@ export default {
             var img = new Image();
             img.src = "../assets/profile-pictures/" + id + ".jpg";
             if(img.height != 0){
-                console.log("true");
                 return true;
-            }else{console.log("false");}
+            }
     }
   }
 }

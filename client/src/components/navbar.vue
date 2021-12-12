@@ -106,9 +106,8 @@ export default {
         var img = new Image();
         img.src = "../assets/profile-pictures/" + id + ".jpg";
         if(img.height != 0){
-            console.log("true");
             return true;
-        }else{console.log("false");}
+        }
     }
   }
 }
