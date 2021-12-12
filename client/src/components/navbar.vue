@@ -50,7 +50,8 @@
             </a>
             <router-link class="navbar-item nav-button" :to="'/profile?user=' + this.username">
                 <span class="nav-button-span">
-                    <img class="profile-picture" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+                    <img v-if="!imageExists(id)" class="profile-picture" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+                    <img v-if="imageExists(id)" class="profile-picture" :src="'assets/profile-pictures/' + id + '.jpg'" alt="Profile picture">
                     <span id="nav-name-span">{{navSpan}}</span>
                 </span>
             </router-link>
@@ -67,6 +68,7 @@ export default {
       navSpan: '',
       research: '',
       username: '',
+      id: ''
     }
   },
   async mounted(){
@@ -75,23 +77,15 @@ export default {
       app.configure(feathers.socketio(socket));
       app.configure(feathers.authentication({ storage: localStorage }));
 
-      var profilePicture = document.getElementsByClassName("profile-picture");
-
       const { user } = await app.reAuthenticate(); 
       const name = user.name;
       const id = user.id;
 
+      this.id = id;
+
       this.username = user.username;
 
       this.navSpan = name;
-
-      Array.from(profilePicture).forEach((pic) => {
-          var img = new Image();
-          img.src = "../../public/assets/profile-pictures/" + id + ".jpg";
-          if(img.height != 0){
-              pic.src = "../../public/assets/profile-pictures/" + id + ".jpg";
-          }
-      });
   },
   methods: {
     disconnect: async function(){
@@ -107,6 +101,14 @@ export default {
     },
     search: function(){
       window.open("research?user="+this.research,"_self");
+    },
+    imageExists(id){
+        var img = new Image();
+        img.src = "../assets/profile-pictures/" + id + ".jpg";
+        if(img.height != 0){
+            console.log("true");
+            return true;
+        }else{console.log("false");}
     }
   }
 }

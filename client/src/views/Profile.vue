@@ -4,7 +4,8 @@
     <div class="container feed-container">
         <title>Social7 Profil</title>
         <div class="notification profile-desc">
-          <img class="profile-picture profile-picture-profile" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+          <img v-if="!imageExists(profileID)" class="profile-picture profile-picture-profile" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+          <img v-if="imageExists(profileID)" class="profile-picture profile-picture-profile" :src="'assets/profile-pictures/' + profileID + '.jpg'" alt="Profile picture">
           &nbsp;&nbsp;
           <span class="tag is-name is-large" id="profile-name-span">{{profileNameSpan}}</span>
           <span class="tag is-username is-large" id="profile-username-span">{{profileUsernameSpan}}</span>
@@ -90,7 +91,8 @@ export default {
       profileNameSpan: '',
       profileUsernameSpan: '',
       descriptionSpan: '',
-      joinedAtSpan: ''
+      joinedAtSpan: '',
+      profileID: ''
     }
   },
   async mounted() {
@@ -130,6 +132,17 @@ export default {
     this.profileUsernameSpan = "@"+profileUserName;
     this.descriptionSpan = profileDesc;
     this.joinedAtSpan = profileJoinedAt;
+    this.profileID = query.data[0].id;
+  },
+  methods: {
+    imageExists(id){
+            var img = new Image();
+            img.src = "../assets/profile-pictures/" + id + ".jpg";
+            if(img.height != 0){
+                console.log("true");
+                return true;
+            }else{console.log("false");}
+    }
   }
 }
 </script>
