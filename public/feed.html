@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/bulma/css/bulma.css">
+    <link rel="stylesheet" href="assets/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
+    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="assets/bulma-badge/dist/bulma-badge.css">
+    <script src="//unpkg.com/@feathersjs/client@^4.5.0/dist/feathers.js"></script>
+    <script src="//unpkg.com/socket.io-client@^2.3.0/dist/socket.io.js"></script>
+    <script src="assets/client/verifyAuth.js"></script>
+
+    <title>Social7 Feed</title>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="#">
+            <img style="max-height: 2.5rem;" src="assets/images/social7.png" alt="">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+                <input class="input nav-research" type="text" placeholder="Rechercher un utilisateur">
+            </a>
+            <a href="" class="navbar-item nav-button">
+                <span class="nav-button-span">
+                    <i class="fas fa-search"></i>
+                </span>
+            </a>
+          </div>
+      
+          <div class="navbar-end">
+            <a href="notifications" class="navbar-item nav-button">
+              <span title="Badge top right" class="badge is-bottom social7-badge">8</span>
+              <span class="nav-button-span">
+                  <i class="fas fa-bell"></i>
+              </span>
+            </a>
+            <a href="" class="navbar-item nav-button">
+              <span title="Badge top right" class="badge is-bottom social7-badge">3</span>
+                <span class="nav-button-span">
+                  <i class="fas fa-envelope"></i>
+                </span>
+            </a>
+            <a href="calendar.html" class="navbar-item nav-button">
+              <span title="Badge top right" class="badge is-bottom social7-badge">1</span>
+                <span class="nav-button-span">
+                    <i class="fas fa-calendar-alt"></i>
+                </span>
+            </a>
+            <a class="navbar-item nav-button" id="disconnect-button">
+              <span class="nav-button-span">
+                <i class="fas fa-power-off"></i>
+              </span>
+            </a>
+            <a href="profile" class="navbar-item nav-button">
+                <span class="nav-button-span">
+                    <img class="profile-picture" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+                    <span id="nav-name-span"></span>
+                </span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container feed-container">
+        <h1 class="title section-title">Nouveau Post</h1>
+
+        <!-- début post -->
+        <div class="card post">
+          <div class="card-content">
+            <div class="content">
+              <textarea class="new-post-area" id="new-post-area" name="new-post" id="" cols="30" rows="5"></textarea>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a href="#" class="card-footer-item">Ajouter fichier &nbsp;<i class="fas fa-file-image"></i></a>
+            <a href="#" id="publish-button" class="card-footer-item">Publier &nbsp;<i class="fas fa-paper-plane"></i></a>
+          </footer>
+        </div>
+        <!-- fin post -->
+
+        <h1 class="title section-title">Fil d'Actualité</h1>
+
+        <!-- début post -->
+        <div class="card post">
+          <header class="card-header">
+            <p class="card-header-title tags has-addons username">
+              <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+              &nbsp;&nbsp;
+              <span class="tag is-name">Maël Queguiner</span>
+              <span class="tag is-username">@zeyesm</span>
+            </p>
+            <button class="card-header-icon" aria-label="more options">
+              <span class="icon">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              Mathis c'est un bg si je pouvais le sucer je le ferais
+              <br>
+              <time datetime="2021-11-20">22:55 PM - 20 Nov 2021</time>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a href="#" class="card-footer-item">0 &nbsp;<i class="fas fa-comment"></i></a>
+            <a style="color:green" href="#" class="card-footer-item">1 &nbsp;<i class="fas fa-retweet"></i></a>
+            <a style="color: red" href="#" class="card-footer-item">1 &nbsp;<i class="fas fa-heart"></i></a>
+          </footer>
+        </div>
+        <!-- fin post -->
+
+        <!-- début post -->
+        <div class="card post">
+            <header class="card-header">
+              <p class="card-header-title tags has-addons username">
+                <img class="profile-picture-post" src="assets/images/default-profile-picture.jpg" alt="Profile picture">
+                &nbsp;&nbsp;
+                <span class="tag is-name">Mathis Grisel</span>
+                <span class="tag is-username">@gryzel64</span>
+              </p>
+              <button class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                Y'en a marre des noix, des arbres et des bagnoles...
+                <a href="#">@zeyesm</a>. <a href="#">#firstpost</a> <a href="#">#helloworld</a>
+                <br>
+                <time datetime="2021-11-20">22:42 PM - 20 Nov 2021</time>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">13 &nbsp;<i class="fas fa-comment"></i></a>
+              <a href="#" class="card-footer-item">3,4M &nbsp;<i class="fas fa-retweet"></i></a>
+              <a href="#" class="card-footer-item">17M &nbsp;<i class="fas fa-heart"></i></a>
+            </footer>
+        </div>
+        <!-- fin post -->
+
+      </div>
+
+</body>
+</html>
+
+<script src="assets/client/post-service.js"></script>
+<script src="assets/client/navbar-update.js"></script>
+<script src="assets/client/disconnect.js"></script>
