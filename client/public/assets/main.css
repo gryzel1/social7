@@ -213,3 +213,50 @@ body{
     background-color:#00AA5F;
     color: white;
 }
+
+.follow-button{
+    margin-left: 10px;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 50px;
+    background-color: lightgray;
+    color: black;
+}
+
+.follow-button:hover{
+    background-color: #00AA5F;
+    color:white;
+}
+
+.followed-button{
+    margin-left: 10px;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 50px;
+    background-color: #00AA5F;
+    color:white;
+}
+
+.followed-button:hover{
+    background-color: lightgray;
+    color: black;
+}
+
+.edit-name{
+    background-color: lightgray;
+    border: none;
+}
+
+.edit-username{
+    background-color: #00AA5F;
+    color: white;
+    border: none;
+}
+
+.edit-desc{
+    background-color: lightgray;
+}

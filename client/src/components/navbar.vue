@@ -26,7 +26,7 @@
       
           <div class="navbar-end">
             <router-link class="navbar-item nav-button" to="/notifications">
-              <span title="Badge top right" class="badge is-bottom social7-badge">8</span>
+              <span title="Badge top right" class="badge is-bottom social7-badge">1</span>
               <span class="nav-button-span">
                   <i class="fas fa-bell"></i>
               </span>

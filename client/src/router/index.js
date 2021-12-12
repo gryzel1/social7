@@ -7,6 +7,7 @@ import Profile from "@/views/Profile.vue";
 import Notifications from "@/views/Notifications.vue";
 import Events from "@/views/Events.vue";
 import Research from "@/views/Research.vue";
+import Editor from "@/views/Profile-Edition.vue";
 
 const routes = [
     {
@@ -43,6 +44,11 @@ const routes = [
         name: 'Research',
         path: '/research',
         component: Research,
+    },
+    {
+        name: 'Profile editor',
+        path: '/profileEditor',
+        component: Editor,
     }
 ];
 

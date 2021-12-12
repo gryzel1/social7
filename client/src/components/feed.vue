@@ -17,12 +17,9 @@
             <div class="content">
                 {{ post.text }}
                 <br>
-                <time datetime="2021-11-20">{{ post.createdAt.substring(8,10) + "/" + post.createdAt.substring(5,7) + "/" + post.createdAt.substring(0,4) + " " + post.createdAt.substring(11,19)}}</time>
+                <time>{{ post.createdAt.substring(8,10) + "/" + post.createdAt.substring(5,7) + "/" + post.createdAt.substring(0,4) + " " + post.createdAt.substring(11,19)}}</time>
             </div>
             </div>
-            <footer class="card-footer">
-            <a style="color: red" href="#" class="card-footer-item">1 &nbsp;<i class="fas fa-heart"></i></a>
-            </footer>
         </div>
         <!-- fin post -->
     </div>
@@ -33,7 +30,8 @@ export default {
     name: 'feed',
     data(){
         return {
-            posts: []
+            posts: [],
+            sessionID: ''
         }
     },
     async mounted() {
@@ -42,13 +40,36 @@ export default {
         app.configure(feathers.socketio(socket));
         app.configure(feathers.authentication({ storage: localStorage }));
 
-        await app.reAuthenticate(); 
+        const { user } = await app.reAuthenticate();
+        this.sessionID = user.id;
 
         const postsService = app.service('posts');
         const usersService = app.service('users');
 
+        const followService = app.service('follow');
+        var queryFollow = await followService.find({
+            query: {
+                $select: [ 'followedId' ],
+                userId: this.sessionID
+            }
+        });
+
+        console.log(queryFollow.data);
+        var followedUsers = []
+        followedUsers.push(this.sessionID);
+        var i=0;
+        while(i<queryFollow.data.length){
+            followedUsers.push(queryFollow.data[i].followedId);
+            i++;
+        }
+        console.log(followedUsers);
+
         var query = await postsService.find({
             query: {
+                $sort: {
+                    createdAt: -1
+                },
+                userId: followedUsers
             }
         });
 

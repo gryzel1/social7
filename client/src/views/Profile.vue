@@ -9,7 +9,10 @@
           &nbsp;&nbsp;
           <span class="tag is-name is-large" id="profile-name-span">{{profileNameSpan}}</span>
           <span class="tag is-username is-large" id="profile-username-span">{{profileUsernameSpan}}</span>
-          <a href="" class="profile-icon"><i class="fas fa-cog"></i></a>
+          <router-link to="profileEditor" v-if="isOwnAccount()" href="" class="profile-icon"><i class="fas fa-cog"></i></router-link>
+          <button v-if="!isOwnAccount() && !isFollowed" style="border:none;" class="follow-button" v-on:click="follow">Suivre</button>
+          <button v-if="!isOwnAccount() && isFollowed" style="border:none;" class="followed-button" v-on:click="unFollow">Suivi</button>
+  
           <br><br>
           <p><span id="profile-description-span">{{descriptionSpan}}</span></p>
           <br>
@@ -20,21 +23,10 @@
 
           <div class="columns subscribers">
             <div class="column">
-              X Abonnés
+              {{ followersCount }} Abonnés
             </div>
             <div class="column">
-              X Abonnements
-            </div>
-          </div>
-
-          <br>
-
-          <div class="columns">
-            <div class="column active-category">
-              1 Post
-            </div>
-            <div class="column category">
-              1 J'aime
+              {{ followingsCount }} Abonnements
             </div>
           </div>
           
@@ -64,7 +56,11 @@ export default {
       profileUsernameSpan: '',
       descriptionSpan: '',
       joinedAtSpan: '',
-      profileID: ''
+      profileID: '',
+      sessionID: '',
+      isFollowed: '',
+      followersCount: 0,
+      followingsCount: 0
     }
   },
   async mounted() {
@@ -79,12 +75,13 @@ export default {
     const username = user.username;
     const description = user.description;
     const joinedAt = user.createdAt;
+    this.sessionID = user.id;
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
     const profileUserName = urlParams.get('user');
-    
+
     const usersService = app.service('users');
     var query = await usersService.find({
         query: {
@@ -105,6 +102,34 @@ export default {
     this.descriptionSpan = profileDesc;
     this.joinedAtSpan = profileJoinedAt;
     this.profileID = query.data[0].id;
+
+    const followService = app.service('follow');
+      var query = await followService.find({
+        query: {
+          userId: this.sessionID,
+          followedId: this.profileID
+        }
+      });
+    if(query.data.length == 1) this.isFollowed = true;
+    else this.isFollowed = false;
+
+    var queryFollowers = await followService.find({
+      query: {
+        followedId: this.profileID,
+      }
+    });
+
+    this.followersCount = queryFollowers.data.length;
+
+    var queryFollowings = await followService.find({
+      query: {
+        userId: this.profileID,
+      }
+    });
+
+    this.followingsCount = queryFollowings.data.length;
+    
+
   },
   methods: {
     imageExists(id){
@@ -113,6 +138,46 @@ export default {
             if(img.height != 0){
                 return true;
             }
+    },
+    isOwnAccount(){
+      if (this.profileID == this.sessionID) return true;
+      else return false;
+    },
+    async follow(){
+      const socket = io('http://localhost:3030');
+      const app = feathers();
+      app.configure(feathers.socketio(socket));
+      app.configure(feathers.authentication({ storage: localStorage }));
+
+      const { user } = await app.reAuthenticate();
+
+      const followService = app.service('follow');
+      await followService.create({
+                userId: this.sessionID,
+                followedId: this.profileID
+      });
+
+      this.isFollowed = true;
+    },
+    async unFollow(){
+      const socket = io('http://localhost:3030');
+      const app = feathers();
+      app.configure(feathers.socketio(socket));
+      app.configure(feathers.authentication({ storage: localStorage }));
+
+      const { user } = await app.reAuthenticate();
+
+      const followService = app.service('follow');
+      var query = await followService.find({
+        query: {
+          userId: this.sessionID,
+          followedId: this.profileID
+        }
+      });
+
+      await followService.remove(query.data[0].id);
+
+      this.isFollowed = false;
     }
   }
 }

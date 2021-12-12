@@ -20,9 +20,6 @@
                 <time datetime="2021-11-20">{{ post.createdAt.substring(8,10) + "/" + post.createdAt.substring(5,7) + "/" + post.createdAt.substring(0,4) + " " + post.createdAt.substring(11,19)}}</time>
             </div>
             </div>
-            <footer class="card-footer">
-            <a style="color: red" href="#" class="card-footer-item">1 &nbsp;<i class="fas fa-heart"></i></a>
-            </footer>
         </div>
         <!-- fin post -->
     </div>
@@ -60,7 +57,10 @@ export default {
 
         var queryPosts = await postsService.find({
             query: {
-                userId: query.data[0].id
+                userId: query.data[0].id,
+                $sort: {
+                    createdAt: -1
+                }
             }
         });
 
