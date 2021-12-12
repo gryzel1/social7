@@ -1,6 +1,7 @@
 <template>
     <div>
         <verify-auth />
+        <title>Social7 Notifications</title>
         <div class="container feed-container">
         <h1 class="title section-title">Notifications</h1>
 
